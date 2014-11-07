@@ -1,0 +1,45 @@
+Description:
+------------
+PortScan program is the tool for scanning TCP and UDP ports of IP node.
+There are two versions of program:
+ - PortScn4.exe for TCP/IP 4.0 and
+ - PortScan.exe for TCP/IP 4.1 and above.
+
+
+Installation:
+-------------
+Put file PortScan.exe (or PortScn4.exe) into any directory (it is preferably
+into the same directory, as LanScan).
+
+
+Syntax:
+-------
+ PortScan <IP address> [<start port> [<end port> [<ICMP time-out>]]]
+or
+ PortScn4 <IP address> [<start port> [<end port> [<ICMP time-out>]]]
+
+Here:
+ <IP address> - IP address for scanning;
+ <start port> - the first port for scanning;
+ <stop port> - the last port for scanning;
+ <ICMP time-out> - program will wait for the receiving of ICMP package
+                   during <ICMP time-out> seconds.
+
+PortScan obtains values for parameters
+<start port>, <end port> and <ICMP time-out> using:
+ 1. Global parameters from PORTSCAN.INI;
+ 2. Special parameters (parameters for specified IP-address only)
+    from PORTSCAN.INI;
+ 3. Program parameters field.
+Parameters from each next source overwrites parameters from previous source.
+Program checks parameters and, if they are incorrect, uses
+ 4. Default values.
+
+Buttons description:
+--------------------
+Run   - start the scanning.
+Break - stop the scanning.
+Log   - save the scanning results into file PortScan.Log.
+Save  - put parameters <start port>, <end port> and <ICMP time-out>
+        into file PORTSCAN.INI.
+Exit  - quit the program.

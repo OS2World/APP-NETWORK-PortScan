@@ -1,0 +1,41 @@
+#include <os2.h>
+#include "PortScan.h"
+
+ICON 1 "PortScan.ico"
+
+DLGTEMPLATE DIALOGWIN PRELOAD MOVEABLE
+BEGIN
+    DIALOG  Title, DIALOGWIN, 80, 30, 270, 190, WS_VISIBLE, FCF_SYSMENU | FCF_TITLEBAR | FCF_SIZEBORDER | FCF_TASKLIST | FCF_MINMAX
+    PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans"
+    BEGIN
+        CTEXT      "", IP_ADDRESS,                  0, 178, 270,  10, DT_VCENTER | NOT WS_GROUP
+        CTEXT      "Port range:", 202,              0, 165,  35,  10, DT_VCENTER | NOT WS_GROUP
+        ENTRYFIELD "", PORT_S,                     40, 167,  20,   6, ES_RIGHT | NOT ES_AUTOSCROLL | ES_MARGIN | WS_GROUP
+        CTEXT      "-", 203,                       61, 165,   8,  10, DT_VCENTER | NOT WS_GROUP
+        ENTRYFIELD "", PORT_P,                     70, 167,  20,   6, ES_RIGHT | NOT ES_AUTOSCROLL | ES_MARGIN | WS_GROUP
+        CTEXT      "ICMP time-out (sec):", 204,   150, 165,  65,  10, DT_VCENTER | NOT WS_GROUP
+        ENTRYFIELD "", TIMEOUT,                   220, 167,  11,   6, ES_RIGHT | NOT ES_AUTOSCROLL | ES_MARGIN | WS_GROUP
+        CONTAINER  CONT_TCP,                        0,  30, 134, 133, CCS_SINGLESEL | CCS_READONLY | NOT WS_GROUP
+        CONTAINER  CONT_UDP,                      135,  30, 134, 133, CCS_SINGLESEL | CCS_READONLY | NOT WS_GROUP
+        CTEXT      "", MSG_TCP,                     0,  17, 134,  10, DT_VCENTER | NOT WS_GROUP
+        CTEXT      "", MSG_UDP,                   135,  17, 134,  10, DT_VCENTER | NOT WS_GROUP
+        PUSHBUTTON "~Run",   PB_RUN,   20, 2, 30, 13, WS_GROUP
+        PUSHBUTTON "~Break", PB_STOP,  70, 2, 30, 13, WS_GROUP
+        PUSHBUTTON "~Log",   PB_LOG,  120, 2, 30, 13, WS_GROUP
+        PUSHBUTTON "~Save",  PB_SAVE, 170, 2, 30, 13, WS_GROUP
+        PUSHBUTTON "~Exit",  PB_EXIT, 220, 2, 30, 13, WS_GROUP
+    END
+END
+
+DLGTEMPLATE PROMPT_ID
+BEGIN
+	DIALOG "", PROMPT_ID, 40, 55, 190, 55, FS_DLGBORDER | WS_VISIBLE | WS_CLIPSIBLINGS | WS_SAVEBITS
+   PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans"
+	BEGIN
+      CTEXT "Do you want to save these parameters as ~General parameters or", 301, 0, 40, 190, 10, DT_VCENTER | NOT WS_GROUP | DT_MNEMONIC
+      CTEXT "~Special parameters (parameters for this IP address only) ?",    302, 0, 25, 190, 10, DT_VCENTER | NOT WS_GROUP | DT_MNEMONIC
+      PUSHBUTTON "~General", DID_GENERAL,  25, 5, 30, 15, WS_GROUP
+      PUSHBUTTON "~Special", DID_SPECIAL,  80, 5, 30, 15, WS_GROUP
+      PUSHBUTTON "~Cancel",  DID_CANCEL,  135, 5, 30, 15, WS_GROUP
+	END
+END

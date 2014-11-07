@@ -1,0 +1,13 @@
+option  link(pmtype, pm), link(linkwithmultithreadlib),
+        link(linkwithsharedlib,no), opt(level, "2"),
+        link(defaultlibsname, "tcp32dll.lib"),
+        link(defaultlibsname, "so32dll.lib"),
+        opt(tune, "486"), gen(arch, "486"),
+        define("TCPV40HDRS", ), define("BSD_SELECT", )
+{
+   target "PortScn4.exe"
+   {
+      source type(c) "PortScan.c"
+      source type(rc) "PortScan.rc"
+   }
+}
